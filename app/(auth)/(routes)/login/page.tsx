@@ -8,7 +8,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const LoginPage =async () => {
-  const isLoggedIn = await currentProfileInLogin()
+  // const isLoggedIn = await currentProfileInLogin()
   
 // if(isLoggedIn){
 //   redirect("/")
