@@ -20,7 +20,6 @@ import { useState } from "react";
 import axios from "axios";
 import qs from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
-import { ActionTooltip } from "../TooltipActions";
 
 interface ServermemberProps {
     member: Member & {profile: User};
@@ -40,7 +39,7 @@ export const Servermember = ({
     const router = useRouter();
     const params = useParams()
     const [loadingId, setLoadingId] = useState("")
-const {isOpen, onOpen, onClose, type, data} = useModal();
+const { onOpen} = useModal();
     const icon = roleIcon[member.role]
 
     const onRoleChange = async (
@@ -56,7 +55,7 @@ const {isOpen, onOpen, onClose, type, data} = useModal();
           }
         })
       
-        const response = await axios.patch(url, {role})
+        await axios.patch(url, {role})
       
         router.refresh();
       

@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 export function LeaveServerModal() {
   const router = useRouter()
 const [isLoading, setIsLoading]= useState(false)
-const {isOpen,onOpen, onClose, type, data} = useModal();
+const {isOpen, onClose, type, data} = useModal();
 const {server} = data
 
 const isModalOpen = isOpen && type === "leaveServer";

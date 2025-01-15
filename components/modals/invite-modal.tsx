@@ -2,7 +2,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -11,7 +10,7 @@ import { useModal } from "@/hooks/use-modal-store"
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Check, CheckCheck, Copy, RefreshCcw } from "lucide-react";
+import {  CheckCheck, Copy, RefreshCcw } from "lucide-react";
 import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
 import axios from "axios";

@@ -1,6 +1,6 @@
 import { currentProfile } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { MemberRole, Message } from "@prisma/client";
+import { Message } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 const MESSAGES_BATCH = 10;

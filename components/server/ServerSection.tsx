@@ -3,7 +3,7 @@
 import { ServerWithMembersWithProfiles } from "@/types";
 import { ChannelType, MemberRole } from "@prisma/client";
 import { ActionTooltip } from "../TooltipActions";
-import { Plus, Settings } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerSearchProps {
@@ -19,7 +19,6 @@ export const ServerSection = ({
     role,
     sectionType,
     channelType,
-    server
 }: ServerSearchProps) => {
 const {onOpen} = useModal()
 

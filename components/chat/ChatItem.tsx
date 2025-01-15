@@ -3,16 +3,13 @@
 import { Member, MemberRole, User } from "@prisma/client";
 import { UserAvator } from "../UserAvator";
 import { ActionTooltip } from "../TooltipActions";
-import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash, X } from "lucide-react";
+import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FormItem
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Image from "next/image";
@@ -71,7 +68,6 @@ export const ChatItem = ({
     deleted,
     socketUrl,
     socketquery,
-    type
 }: ChatItemProps) => {
     const fileTypeSuffix = getFileTypeSuffix(fileUrl);
     const [isEditing, setIsEditing] = useState(false);
@@ -86,7 +82,7 @@ if(member.id === currentMember.id){
 
 router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
     }
-    const isSender = member.id === currentMember.id; 
+
     const isAdmin = currentMember.role === MemberRole.ADMIN;
     const isModerator = currentMember.role === MemberRole.MODERATOR;
     const isOwner = currentMember.id === member.id;
@@ -119,7 +115,7 @@ const isLoading = form .formState.isSubmitting
         form.reset({
             content: content,
         })
-      }, [content])
+      }, [content, form])
 
      async function onSubmit(values: z.infer<typeof formSchema>) {
     try {

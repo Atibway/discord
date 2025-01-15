@@ -8,14 +8,11 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Plus, SendHorizontal, Smile } from "lucide-react"
+import { Plus, SendHorizontal } from "lucide-react"
 import qs from "query-string"
 import axios from "axios"
 import { useModal } from "@/hooks/use-modal-store"

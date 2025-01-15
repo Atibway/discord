@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import { db } from "./db";
 import { redirect } from "next/navigation";
-import { logout } from "@/actions/logout";
+// import { logout } from "@/actions/logout";
 
 export const currentProfile = async ()=> {
     const session = await auth()

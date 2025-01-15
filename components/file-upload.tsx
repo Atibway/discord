@@ -98,7 +98,7 @@ export const FileUpload = ({
           return new File([file], newName, { type: file.type });
         });
       }}
-      onUploadProgress={(res) => {
+      onUploadProgress={() => {
         // Optional: Handle upload progress if needed
       }}
     />

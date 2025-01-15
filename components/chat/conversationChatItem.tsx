@@ -2,7 +2,7 @@
 
 import { Member, MemberRole, User } from "@prisma/client";
 import { ActionTooltip } from "../TooltipActions";
-import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash, X, Ban } from 'lucide-react';
+import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -91,7 +91,7 @@ export const ConversationChatItem = ({
 
     useEffect(() => {
         form.reset({ content: content });
-    }, [content]);
+    }, [content, form]);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
