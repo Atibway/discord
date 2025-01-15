@@ -3,7 +3,7 @@
 import { UserAuthForm } from '@/components/auth/LoginForm'
 import { currentProfileInLogin } from '@/lib/auth'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+// import { redirect } from 'next/navigation'
 
 import React from 'react'
 
