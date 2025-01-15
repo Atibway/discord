@@ -15,7 +15,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [githubLoading, setGithubLoading] = React.useState<boolean>(false);
   const [googleLoading, setGoogleLoading] = React.useState<boolean>(false);
   const searchParams = useSearchParams();
-  const urlError = searchParams.get('error') === 'OAuthAccountNotLinked' ? 'Email already in use with a different provider' : '';
+  const urlError = searchParams?.get('error') === 'OAuthAccountNotLinked' ? 'Email already in use with a different provider' : '';
 
   async function onSubmit(provider: string) {
     if (provider === 'github') {
