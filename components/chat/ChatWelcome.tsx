@@ -19,10 +19,10 @@ name
     </div>
 )}
 
-<p className="text-xl md:text-3xl font-bold">
+<p className="text-xl md:text-3xl font-bold dark:text-white">
     {type === "channel"? "Welcome to #": ""} {name}
 </p>
-<p>
+<p className="dark:text-primary-foreground">
     {type === "channel"
     ? `This is the start of the #${name} channel`
     :`This is the start of your conversation with ${name}`
