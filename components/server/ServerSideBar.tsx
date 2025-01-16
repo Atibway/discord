@@ -186,9 +186,8 @@ server={server}
 <Servermember
 key={member.id}
 member={member}
-server={server
-
-}
+server={server}
+role={role ?? "GUEST"}
 />
 ))}
                 </div>

@@ -11,7 +11,8 @@ import { ServerManageMember } from "./ServerManageMember";
 
 interface ServermemberProps {
     member: Member & {profile: User};
-    server: Server
+    server: Server;
+    role: MemberRole
 }
 
 const roleIcon ={
@@ -22,7 +23,8 @@ const roleIcon ={
 
 export const Servermember = ({
     member,
-    server
+    server,
+    role
 }:ServermemberProps) => {
     const router = useRouter();
     const params = useParams()
@@ -55,8 +57,8 @@ export const Servermember = ({
    </button>
    <div>
   
-    {server.profileid !== member.profileid && loadingId !== member.id && member.role === "ADMIN" && (
-     <div>
+  {server.profileid !== member.profileid && loadingId !== member.id && role === MemberRole.ADMIN && (
+      <div>
       <ServerManageMember
        member={member}
        server= {server}
