@@ -251,12 +251,17 @@ export const ChatItemConversation = ({
                 </div>
             </div>
             {canDeleteMessage && (
-                <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm shadow-sm">
-                    {canEditMessage && (
+                <div className={cn(
+                    "absolute -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm shadow-sm",
+                    "hidden sm:group-hover:flex md:hidden", // Hide on mobile, show on hover for tablets, hide on larger screens
+                    "flex sm:hidden", // Always show on mobile
+                    "items-center gap-x-2 p-1"
+                )}>
+                    {!fileUrl && canEditMessage && (
                         <ActionTooltip label="Edit">
                             <Edit
                             onClick={() => setIsEditing(true)}
-                            className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                            className="cursor-pointer w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
                             />
                         </ActionTooltip>
                     )}
@@ -266,7 +271,7 @@ export const ChatItemConversation = ({
                             apiUrl: `${socketUrl}/${id}`,
                             query: socketquery
                         })}
-                        className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                        className="cursor-pointer w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
                         />
                     </ActionTooltip>
                 </div>
