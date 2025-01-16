@@ -20,6 +20,7 @@ import { useState } from "react";
 import axios from "axios";
 import qs from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
+import { ActionTooltip } from "../TooltipActions";
 
 interface ServermemberProps {
     member: Member & {profile: User};
@@ -117,61 +118,61 @@ const { onOpen} = useModal();
    </button>
    <div>
     {server.profileid !== member.profileid && loadingId !== member.id && (
-    <div className="ml-auto">
-      <DropdownMenu>
-  <DropdownMenuTrigger>
-    <MoreVertical className="h-4 w-4 text-zinc-500"/>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent side="top">
-    <DropdownMenuSub>
-      <DropdownMenuSubTrigger className="flex items-center">
-<ShieldQuestion className="w-4 h-4 mr-2"/>
-<span>Role</span>
-      </DropdownMenuSubTrigger>
-      <DropdownMenuPortal>
-        <DropdownMenuSubContent>
+     <ActionTooltip  label="Manage Members" side="top">
+     <div className="ml-auto">
+          <DropdownMenu>
+      <DropdownMenuTrigger>
+        <MoreVertical className="h-4 w-4 text-zinc-500"/>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent side="top">
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger className="flex items-center">
+    <ShieldQuestion className="w-4 h-4 mr-2"/>
+    <span>Role</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+            <DropdownMenuItem
+            onClick={()=> onRoleChange(member.id, "GUEST")}
+            >
+              <Shield className="h-4 w-4 mr-2"/>
+              Guest
+              {member.role === "GUEST" && (
+                <Check className="h-4 w-4 ml-auto"/>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={()=> onRoleChange(member.id, "MODERATOR")}
+            >
+              <ShieldCheck className="h-4 w-4 mr-2"/>
+              Moderator
+              {member.role === "MODERATOR" && (
+                <Check className="h-4 w-4 ml-auto"/>
+              )}
+            </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
-        onClick={()=> onRoleChange(member.id, "GUEST")}
+         onClick={()=> onKick(member.id)}
         >
-          <Shield className="h-4 w-4 mr-2"/>
-          Guest
-          {member.role === "GUEST" && (
-            <Check className="h-4 w-4 ml-auto"/>
-          )}
+          <Gavel className="h-4 w-4 mr-2"/>
+          Kick
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={()=> onRoleChange(member.id, "MODERATOR")}
-        >
-          <ShieldCheck className="h-4 w-4 mr-2"/>
-          Moderator
-          {member.role === "MODERATOR" && (
-            <Check className="h-4 w-4 ml-auto"/>
-          )}
-        </DropdownMenuItem>
-        </DropdownMenuSubContent>
-      </DropdownMenuPortal>
-    </DropdownMenuSub>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem
-     onClick={()=> onKick(member.id)}
-    >
-      <Gavel className="h-4 w-4 mr-2"/>
-      Kick
-    </DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>
-
-    </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    
+        </div>
+        </ActionTooltip>
   )}
   {loadingId === member.id && (
     <Loader2 className="animate-spin text-zinc-500 ml-auto"/>
   )}
     </div>
-    {/* {member.role === MemberRole.ADMIN && (
-    <ActionTooltip  label="Manage Members" side="top">
+    
+  
 
-    </ActionTooltip>
-)} */}
     </div>
   )
 }
