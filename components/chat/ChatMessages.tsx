@@ -9,6 +9,7 @@ import { ElementRef, Fragment, useRef } from "react";
 import { ChatItem } from "./ChatItem";
 import { useChatSocket } from "@/hooks/use-chat-socket";
 import { useChatScroll } from "@/hooks/use-chat-scroll";
+import { ChatItemConversation } from "./conversationChatItem";
 
 interface ChatmessagesProps {
   name: string;
@@ -123,7 +124,25 @@ export const ChatMessages = ({
           <Fragment key={i}>
             {group.items.map((message: MessageWithMemberWithProfile) => (
               <>
-              
+              {type == "conversation"? (
+                <ChatItemConversation
+                key={message.id}
+                id={message.id}
+                content={message.content}
+                member={message.member}
+                timestamp={format(
+                  new Date(message.createdAt),
+                  DATE_FORMAT
+                )}
+                fileUrl={message.fileUrl}
+                deleted={message.deleted}
+                currentMember={member}
+                isUpdated={message.updatedAt !== message.createdAt}
+                socketUrl={socketUrl}
+                socketquery={socketquery}
+                type={type}
+              />
+              ):(
               <ChatItem
                 key={message.id}
                 id={message.id}
@@ -141,7 +160,7 @@ export const ChatMessages = ({
                 socketquery={socketquery}
                 type={type}
               />
-           
+              )}
               </>
             ))}
           </Fragment>
