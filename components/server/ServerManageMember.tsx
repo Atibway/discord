@@ -83,7 +83,7 @@ export const ServerManageMember = ({
       }
 
   return (
-    <ActionTooltip  label="Manage Member" side="top">
+    <ActionTooltip  label={`Manage ${member.profile.name}`} side="top">
      <div className="mr-4">
           <DropdownMenu>
       <DropdownMenuTrigger>
