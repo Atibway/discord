@@ -9,7 +9,6 @@ import { ElementRef, Fragment, useRef } from "react";
 import { ChatItem } from "./ChatItem";
 import { useChatSocket } from "@/hooks/use-chat-socket";
 import { useChatScroll } from "@/hooks/use-chat-scroll";
-import { ConversationChatItem } from "./conversationChatItem";
 
 interface ChatmessagesProps {
   name: string;
