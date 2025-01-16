@@ -84,8 +84,7 @@ export const ChatInput = ({
                                             <EmojiPicker
                                                 onChange={(emoji: string) => form.setValue("content", `${form.getValues("content")} ${emoji}`)}
                                             />
-                                            <Button 
-                                                type="submit" 
+                                            <Button  
                                                 size="icon" 
                                                 variant="ghost"
                                                 className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
