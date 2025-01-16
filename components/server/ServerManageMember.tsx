@@ -84,7 +84,7 @@ export const ServerManageMember = ({
 
   return (
     <ActionTooltip  label="Manage Member" side="top">
-     <div className="ml-auto">
+     <div className="mr-4">
           <DropdownMenu>
       <DropdownMenuTrigger>
     
