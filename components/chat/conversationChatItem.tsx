@@ -140,8 +140,16 @@ export const ChatItemConversation = ({
             isSender ? "justify-end" : "justify-start"
         )}>
             {!isSender && (
+                <div className="flex items-center mb-1 space-x-1">
                 <div onClick={onmemberClick} className="cursor-pointer hover:drop-shadow-md transition mr-2">
                     <UserAvator src={member.profile.image ?? ""} />
+                </div>
+                <div>
+                        
+                        <ActionTooltip label={member.role}>
+                            {roleIconMap[member.role]}
+                        </ActionTooltip>
+                    </div>
                 </div>
             )}
             <div className={cn(
@@ -149,16 +157,8 @@ export const ChatItemConversation = ({
                 isSender ? "bg-blue-500 text-white" : "bg-white text-black",
                 deleted && "bg-gray-200 text-gray-500"
             )}>
-                {type === "channel" && (
-                    <div className="flex items-center mb-1">
-                        <p onClick={onmemberClick} className="text-xs font-semibold hover:underline cursor-pointer mr-1">
-                            {member.profile.name}
-                        </p>
-                        <ActionTooltip label={member.role}>
-                            {roleIconMap[member.role]}
-                        </ActionTooltip>
-                    </div>
-                )}
+               
+                
                 {isImage && (
                     <a
                         href={fileUrl?.replace("/image", "")}
