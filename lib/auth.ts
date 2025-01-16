@@ -1,23 +1,23 @@
 import { auth } from "@/auth";
-import { db } from "./db";
-import { redirect } from "next/navigation";
+// import { db } from "./db";
+// import { redirect } from "next/navigation";
 // import { logout } from "@/actions/logout";
 
 export const currentProfile = async ()=> {
     const session = await auth()
 
 
-        const user = await db.user.findUnique({
-            where: {
-                id: session?.user.id
-            }
-        })
+        // const user = await db.user.findUnique({
+        //     where: {
+        //         id: session?.user.id
+        //     }
+        // })
  
-        if(!user){
-            redirect("/login")
-        }
+        // if(!user){
+        //     redirect("/login")
+        // }
   
-    return user;
+    return session?.user
 }
 export const currentProfileInLogin = async ()=> {
     const session = await auth()
