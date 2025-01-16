@@ -117,6 +117,11 @@ const { onOpen} = useModal();
     {icon}
    </button>
    <div>
+    {member.role === "ADMIN" && (
+      <div>
+        hello
+      </div>
+    )}
     {server.profileid !== member.profileid && loadingId !== member.id && (
      <ActionTooltip  label="Manage Members" side="top">
      <div className="ml-auto">
