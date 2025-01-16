@@ -67,7 +67,6 @@ export const ChatItemConversation = ({
     deleted,
     socketUrl,
     socketquery,
-    type = "conversation"
 }: ChatItemProps) => {
     const fileTypeSuffix = getFileTypeSuffix(fileUrl);
     const [isEditing, setIsEditing] = useState(false);
