@@ -2,25 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { Member, MemberRole, Server, User } from "@prisma/client"
-import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from "lucide-react";
+import { Loader2, ShieldAlert, ShieldCheck} from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { UserAvator } from "../UserAvator";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuPortal,
-    DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
 import { useState } from "react";
-import axios from "axios";
-import qs from "query-string";
-import { useModal } from "@/hooks/use-modal-store";
-import { ActionTooltip } from "../TooltipActions";
+import { ServerManageMember } from "./ServerManageMember";
+
 
 interface ServermemberProps {
     member: Member & {profile: User};
@@ -40,58 +27,8 @@ export const Servermember = ({
     const router = useRouter();
     const params = useParams()
     const [loadingId, setLoadingId] = useState("")
-const { onOpen} = useModal();
+
     const icon = roleIcon[member.role]
-
-    const onRoleChange = async (
-        memberId: string,
-        role: MemberRole
-      ) => {
-      try {
-        setLoadingId(memberId)
-        const url = qs.stringifyUrl({
-          url: `/api/members/${memberId}`,
-          query:{
-            serverId: server.id
-          }
-        })
-      
-        await axios.patch(url, {role})
-      
-        router.refresh();
-      
-      } catch (error) {
-        console.log(error);
-        
-      }finally{
-        setLoadingId("")
-      }
-      }
-      const onKick = async (
-        memberId: string
-      ) => {
-      try {
-        setLoadingId(memberId)
-        const url = qs.stringifyUrl({
-          url: `/api/members/${memberId}`,
-          query:{
-            serverId: server.id
-          }
-        })
-      
-        const response = await axios.delete(url)
-      
-        router.refresh();
-        onOpen("members", {server: response.data})
-      
-      } catch (error) {
-        console.log(error);
-        
-      }finally{
-        setLoadingId("")
-      }
-      }
-
       const onClick=()=>{
         router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
       }
@@ -117,62 +54,15 @@ const { onOpen} = useModal();
     {icon}
    </button>
    <div>
-    {member.role === "ADMIN" && (
-      <div>
-        hello
-      </div>
-    )}
-    {server.profileid !== member.profileid && loadingId !== member.id && (
-     <ActionTooltip  label="Manage Members" side="top">
-     <div className="ml-auto">
-          <DropdownMenu>
-      <DropdownMenuTrigger>
-    
-               <MoreVertical className="h-4 w-4 text-zinc-500"/>
-             
-        
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="top">
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="flex items-center">
-    <ShieldQuestion className="w-4 h-4 mr-2"/>
-    <span>Role</span>
-          </DropdownMenuSubTrigger>
-          <DropdownMenuPortal>
-            <DropdownMenuSubContent>
-            <DropdownMenuItem
-            onClick={()=> onRoleChange(member.id, "GUEST")}
-            >
-              <Shield className="h-4 w-4 mr-2"/>
-              Guest
-              {member.role === "GUEST" && (
-                <Check className="h-4 w-4 ml-auto"/>
-              )}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={()=> onRoleChange(member.id, "MODERATOR")}
-            >
-              <ShieldCheck className="h-4 w-4 mr-2"/>
-              Moderator
-              {member.role === "MODERATOR" && (
-                <Check className="h-4 w-4 ml-auto"/>
-              )}
-            </DropdownMenuItem>
-            </DropdownMenuSubContent>
-          </DropdownMenuPortal>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-         onClick={()=> onKick(member.id)}
-        >
-          <Gavel className="h-4 w-4 mr-2"/>
-          Kick
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-    
-        </div>
-        </ActionTooltip>
+  
+    {server.profileid !== member.profileid && loadingId !== member.id && member.role === "ADMIN" && (
+     <div>
+      <ServerManageMember
+       member={member}
+       server= {server}
+       setLoadingId = {setLoadingId}
+      />
+     </div>
   )}
   {loadingId === member.id && (
     <Loader2 className="animate-spin text-zinc-500 ml-auto"/>
