@@ -122,7 +122,10 @@ const { onOpen} = useModal();
      <div className="ml-auto">
           <DropdownMenu>
       <DropdownMenuTrigger>
-        <MoreVertical className="h-4 w-4 text-zinc-500"/>
+      {member.role === "ADMIN" && (
+               <MoreVertical className="h-4 w-4 text-zinc-500"/>
+              )}
+        
       </DropdownMenuTrigger>
       <DropdownMenuContent side="top">
         <DropdownMenuSub>
