@@ -140,7 +140,7 @@ export const ConversationChatItem = ({
                     </div>
                 )}
 
-                {isImage && (
+                {fileUrl && isImage && (
                     <a
                         href={fileUrl?.replace("/image", "")}
                         target="_blank"
@@ -156,7 +156,7 @@ export const ConversationChatItem = ({
                     </a>
                 )}
 
-                {isPDF && (
+                {fileUrl && isPDF && (
                     <div className="flex items-center p-2 mt-2 rounded-md bg-background/10 mb-2">
                         <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
                         <a
@@ -170,7 +170,7 @@ export const ConversationChatItem = ({
                     </div>
                 )}
 
-                {!isEditing ? (
+                {!isEditing && !fileUrl ? (
                     <p className={cn(
                         "text-sm",
                         deleted && "italic text-zinc-500 dark:text-zinc-400 text-xs"
