@@ -139,8 +139,8 @@ export const ChatItemConversation = ({
             isSender ? "justify-end" : "justify-start"
         )}>
             {!isSender && (
-                <div className="flex items-center mb-1 space-x-1">
-                <div onClick={onmemberClick} className="cursor-pointer hover:drop-shadow-md transition mr-2">
+                <div className="flex items-center mr-2">
+                <div onClick={onmemberClick} className="cursor-pointer hover:drop-shadow-md transition ">
                     <UserAvator src={member.profile.image ?? ""} />
                 </div>
                 <div>
