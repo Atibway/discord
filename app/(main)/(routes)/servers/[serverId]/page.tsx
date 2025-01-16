@@ -12,16 +12,13 @@ const ServerIdPage = async({
   params
 }:ServeridProps) => {
   const profile = await currentProfile()
-  if(!profile){
-    return redirect("/login")
-  }
 
   const server = await db.server.findUnique({
     where:{
       id: params.serverId,
       members:{
         some: {
-          profileid: profile.id,
+          profileid: profile?.id,
         }
       }
     },

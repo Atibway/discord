@@ -1,18 +1,18 @@
 
 
 import { UserAuthForm } from '@/components/auth/LoginForm'
-// import { currentProfileInLogin } from '@/lib/auth'
+import { currentProfile } from '@/lib/auth'
 import Link from 'next/link'
-// import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 import React from 'react'
 
 const LoginPage =async () => {
-  // const isLoggedIn = await currentProfileInLogin()
+  const isLoggedIn = await currentProfile()
   
-// if(isLoggedIn){
-//   redirect("/")
-// } 
+if(isLoggedIn){
+  redirect("/")
+} 
 
 return (
   <>

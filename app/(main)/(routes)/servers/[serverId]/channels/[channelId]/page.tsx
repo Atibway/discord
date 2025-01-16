@@ -17,9 +17,6 @@ interface ChannelIdPageProps {
 
 const channelIdPage = async ({ params }: ChannelIdPageProps) => {
     const profile = await currentProfile();
-    if (!profile) {
-        return redirect('/login');
-    }
 
     const channel = await db.channel.findUnique({
         where: {
@@ -30,7 +27,7 @@ const channelIdPage = async ({ params }: ChannelIdPageProps) => {
     const member = await db.member.findFirst({
         where: {
             serverid: params.serverId,
-            profileid: profile.id,
+            profileid: profile?.id,
         },
     });
 

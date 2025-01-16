@@ -23,9 +23,7 @@ const MemberIdPage = async({
 }: MemberIdPageProps) => {
   const profile = await currentProfile()
 
-  if(!profile){
-return redirect("/login")
-  }
+ 
 
 const currentMember = await db.member.findFirst({
   where:{
@@ -50,7 +48,7 @@ if(!conversation){
 const {memberOne, memberTwo} = conversation
 
 
-const othermember = memberOne.profileid === profile.id? memberTwo: memberOne
+const othermember = memberOne.profileid === profile?.id? memberTwo: memberOne
 
 
 return (
