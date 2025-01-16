@@ -31,13 +31,13 @@ export const ChatWelcome = ({
         </p>
       </div>
 
-      {type === "channel" && (
+      {/* {type === "channel" && (
         <div className="flex justify-center">
           <button className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800">
             Invite Others
           </button>
         </div>
-      )}
+      )} */}
     </div>
   )
 }

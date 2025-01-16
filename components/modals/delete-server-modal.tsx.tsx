@@ -25,6 +25,7 @@ const isModalOpen = isOpen && type === "deleteServer";
 
 const handleClose = ()=>{
       onClose()
+      window.location.reload()
     }
 
     const onClick= async ()=> {
@@ -33,7 +34,7 @@ const handleClose = ()=>{
          await axios.delete(`/api/servers/${server?.id}`)
          onClose()
          router.push("/")
-         router.refresh()
+         window.location.reload()
       } catch (error) {
         console.log(error);
       }finally{

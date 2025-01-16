@@ -23,7 +23,6 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { FileUpload } from "../file-upload"
-import { useRouter } from "next/navigation"
 import { useModal } from "@/hooks/use-modal-store"
 import { useEffect } from "react"
 
@@ -42,7 +41,6 @@ const {isOpen, onClose, type, data} = useModal();
 
 const isModalOpen = isOpen && type === "editServer"
 const {server} = data
-const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -64,8 +62,8 @@ if(server){
       async function onSubmit(values: z.infer<typeof formSchema>) {
        try {
         await axios.patch(`/api/servers/${server?.id}`, values);
-        router.refresh();
         onClose();
+        window.location.reload()
        } catch (error) {
         console.log(error);
         
@@ -74,6 +72,7 @@ if(server){
 const handleClose = () => {
   form.reset()
   onClose()
+  window.location.reload()
 }
     
   return (

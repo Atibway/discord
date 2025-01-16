@@ -96,7 +96,7 @@ try {
 
 const handleClose = ()=>{
       onClose()
-      router.refresh()
+      window.location.reload()
     }
 
     

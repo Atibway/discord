@@ -30,7 +30,7 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
 import { useModal } from "@/hooks/use-modal-store"
 import { ChannelType } from "@prisma/client"
 import { useEffect } from "react"
@@ -54,7 +54,6 @@ const params = useParams()
 const {channelType}= data
 const isModalOpen = isOpen && type === "createChannel";
 
-const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -83,8 +82,8 @@ if(channelType){
   
         await axios.post(url, values);
         form.reset();
-        router.refresh();
         onClose();
+        window.location.reload()
        } catch (error) {
         console.log(error);
         
@@ -93,6 +92,7 @@ if(channelType){
 const handleClose = () => {
   form.reset()
   onClose()
+  window.location.reload()
 }
     
   return (
