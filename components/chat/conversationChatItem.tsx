@@ -56,22 +56,15 @@ export const ConversationChatItem = ({
     fileUrl,
     deleted,
     currentMember,
-    isUpdated,
     socketUrl,
     socketquery,
-    type = "conversation"
 }: ChatItemProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const { onOpen } = useModal();
     const params = useParams();
     const router = useRouter();
 
-    const onMemberClick = () => {
-        if (member.id === currentMember.id) {
-            return;
-        }
-        router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
-    }
+
 
     const isSender = member.id === currentMember.id;
     const isAdmin = currentMember.role === MemberRole.ADMIN;
@@ -129,16 +122,7 @@ export const ConversationChatItem = ({
                 isSender ? "bg-green-700 text-white" : "bg-white text-black",
                 deleted && "bg-gray-200 text-gray-500"
             )}>
-                {type === "channel" && (
-                    <div className="flex items-center mb-1">
-                        <p onClick={onMemberClick} className="text-xs font-semibold hover:underline cursor-pointer mr-1">
-                            {member.profile.name}
-                        </p>
-                        <ActionTooltip label={member.role}>
-                            {roleIconMap[member.role]}
-                        </ActionTooltip>
-                    </div>
-                )}
+              
 
                 {fileUrl && isImage && (
                     <a

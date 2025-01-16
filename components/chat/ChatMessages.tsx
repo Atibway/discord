@@ -124,25 +124,7 @@ export const ChatMessages = ({
           <Fragment key={i}>
             {group.items.map((message: MessageWithMemberWithProfile) => (
               <>
-              {type == "conversation"? (
-                <ConversationChatItem
-                key={message.id}
-                id={message.id}
-                content={message.content}
-                member={message.member}
-                timestamp={format(
-                  new Date(message.createdAt),
-                  DATE_FORMAT
-                )}
-                fileUrl={message.fileUrl}
-                deleted={message.deleted}
-                currentMember={member}
-                isUpdated={message.updatedAt !== message.createdAt}
-                socketUrl={socketUrl}
-                socketquery={socketquery}
-                type={type}
-              />
-              ):(
+              
               <ChatItem
                 key={message.id}
                 id={message.id}
@@ -160,7 +142,7 @@ export const ChatMessages = ({
                 socketquery={socketquery}
                 type={type}
               />
-              )}
+           
               </>
             ))}
           </Fragment>
