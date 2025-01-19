@@ -2,7 +2,6 @@
 
 import { Hash } from 'lucide-react';
 
-import useFcmToken from '@/hooks/useFcmtoken';
 
 interface ChatWelcomeProps {
   type: "channel" | "conversation";

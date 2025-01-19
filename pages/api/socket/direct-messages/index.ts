@@ -6,14 +6,15 @@ import { NextApiRequest } from "next";
 
 import admin from "firebase-admin";
 import { Message } from "firebase-admin/messaging";
-import { NextRequest, NextResponse } from "next/server";
+import serviceAccount from "@/service_key.json";
+
 
 // Initialize Firebase Admin SDK
 if (!admin.apps.length) {
-  const serviceAccount = require("@/service_key.json");
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
+    
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+      });
 }
 
 export default async  function handler (
