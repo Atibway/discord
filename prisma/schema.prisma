@@ -80,7 +80,7 @@ enum MemberRole {
 model Member {
   id  String @id @default(cuid())
   role MemberRole @default(GUEST)
-  
+  FcmToken String? @db.Text
   profileid String 
   profile User @relation(fields: [profileid], references: [id], onDelete: Cascade)
   serverid String 

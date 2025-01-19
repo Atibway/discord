@@ -1,7 +1,8 @@
 
-
 import { UserAuthForm } from '@/components/auth/LoginForm'
 import { currentProfile } from '@/lib/auth'
+import { db } from '@/lib/db'
+import { MemberRole } from '@prisma/client'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
@@ -10,9 +11,20 @@ import React from 'react'
 const LoginPage =async () => {
   const isLoggedIn = await currentProfile()
   
-if(isLoggedIn){
+  let user: { id: string; name: string | null; email: string | null; image: string | null; emailVerified: Date | null; role: MemberRole; createdAt: Date; updatedAt: Date; } | null = null;
+  if (isLoggedIn?.id || isLoggedIn?.email) {
+    user = await db.user.findUnique({
+      where: {
+        id: isLoggedIn?.id ?? undefined,
+        email: isLoggedIn?.email ?? undefined,
+      },
+    });
+  }
+  console.log("User:", user);
+ 
+if(user){
   redirect("/")
-} 
+}
 
 return (
   <>

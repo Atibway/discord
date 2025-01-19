@@ -2,6 +2,8 @@
 
 import { Hash } from 'lucide-react';
 
+import useFcmToken from '@/hooks/useFcmtoken';
+
 interface ChatWelcomeProps {
   type: "channel" | "conversation";
   name: string;
@@ -11,6 +13,8 @@ export const ChatWelcome = ({
   type,
   name
 }: ChatWelcomeProps) => {
+ 
+
   return (
     <div className="space-y-6 px-4 mb-4 py-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md transition-colors duration-200">
       {type === "channel" && (
@@ -31,13 +35,11 @@ export const ChatWelcome = ({
         </p>
       </div>
 
-      {/* {type === "channel" && (
-        <div className="flex justify-center">
-          <button className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800">
-            Invite Others
-          </button>
-        </div>
-      )} */}
+      <div className="p-10">
+      
+      <h1 className="text-4xl mb-4 font-bold">Firebase Cloud Messaging Demo</h1>
+
+    </div>
     </div>
   )
 }

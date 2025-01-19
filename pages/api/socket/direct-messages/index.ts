@@ -4,6 +4,17 @@ import { db } from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types";
 import { NextApiRequest } from "next";
 
+import admin from "firebase-admin";
+import { Message } from "firebase-admin/messaging";
+import { NextRequest, NextResponse } from "next/server";
+
+// Initialize Firebase Admin SDK
+if (!admin.apps.length) {
+  const serviceAccount = require("@/service_key.json");
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
 
 export default async  function handler (
     req: NextApiRequest,
@@ -18,6 +29,9 @@ export default async  function handler (
         const profile = await currentProfile(req, res);
         const {content, fileUrl} = req.body
         const {conversationId} = req.query;
+        // if (typeof token !== 'string') {
+        //     return res.status(400).json({ error: "Invalid token" });
+        // }
 
         if(!profile){
             return res.status(405).json({error: "Unauthorized"})
@@ -83,6 +97,23 @@ export default async  function handler (
                 }
             }
          })
+ 
+         const link = `/servers/${message.member.serverid}/conversations/${message.member.id}`
+         const memberToken = conversation.memberOne.profileid !== profile.id ? conversation.memberOne : conversation.memberTwo
+         const token = memberToken.FcmToken as string
+         const payload: Message = {
+            token,
+            notification: {
+              title: memberToken.profile.name as string,
+              body: message.content,
+            },
+            webpush: link ? {
+              fcmOptions: {
+                link,
+              },
+            } : undefined,
+          };
+await admin.messaging().send(payload);
 
          const channelKey = `chat:${conversationId}:messages`
          res?.socket?.server?.io?.emit(channelKey, message)
